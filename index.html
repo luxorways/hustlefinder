@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HustleFinder.ai — Find Your Perfect Side Hustle with AI</title>
+<meta name="description" content="AI-powered side hustle matcher. Find the perfect side hustle based on your skills, time, and goals. Start earning extra income today.">
+<meta name="keywords" content="side hustle, side hustle ideas, make money online, earn extra income, AI side hustle matcher">
+<!-- Google AdSense — Add your publisher ID below -->
+<!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f8f7ff;
+  --bg2: #ffffff;
+  --bg3: #f1f0fe;
+  --text: #1a1523;
+  --text2: #6b6880;
+  --text3: #a8a5b8;
+  --border: #e8e6f0;
+  --purple: #7c3aed;
+  --purple2: #6d28d9;
+  --pink: #ec4899;
+  --orange: #f97316;
+  --green: #059669;
+  --blue: #3b82f6;
+  --yellow: #f59e0b;
+  --grad: linear-gradient(135deg, #7c3aed 0%, #ec4899 100%);
+  --grad2: linear-gradient(135deg, #f97316 0%, #ec4899 100%);
+  --grad3: linear-gradient(135deg, #3b82f6 0%, #7c3aed 100%);
+  --shadow: 0 4px 24px rgba(124,58,237,0.12);
+  --shadow2: 0 20px 60px rgba(0,0,0,0.08);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif; }
+a { text-decoration: none; color: inherit; cursor: pointer; }
+button { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+/* SCROLLBAR */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg3); }
+::-webkit-scrollbar-thumb { background: var(--purple); border-radius: 3px; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; width: 100%; z-index: 1000;
+  background: rgba(248,247,255,0.9); backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px; height: 68px;
+}
+.logo {
+  font-size: 22px; font-weight: 800; letter-spacing: -0.5px;
+  background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  cursor: pointer;
+}
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a { font-size: 14px; font-weight: 500; color: var(--text2); transition: color 0.2s; }
+.nav-links a:hover { color: var(--purple); }
+.nav-right { display: flex; gap: 10px; }
+.btn-ghost { padding: 9px 22px; border: 1.5px solid var(--border); border-radius: 10px; font-size: 14px; font-weight: 600; background: white; color: var(--text); cursor: pointer; transition: all 0.2s; }
+.btn-ghost:hover { border-color: var(--purple); color: var(--purple); }
+.btn-solid { padding: 9px 22px; border-radius: 10px; font-size: 14px; font-weight: 700; background: var(--grad); color: white; border: none; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 16px rgba(124,58,237,0.25); }
+.btn-solid:hover { transform: translateY(-1px); box-shadow: 0 6px 24px rgba(124,58,237,0.35); }
+
+/* PAGES */
+.page { display: none; min-height: 100vh; }
+.page.active { display: block; }
+
+/* ===== HOME ===== */
+.hero {
+  min-height: 100vh; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; text-align: center;
+  padding: 100px 24px 60px;
+  background:
+    radial-gradient(ellipse 600px 400px at 20% 50%, rgba(124,58,237,0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 500px 400px at 80% 20%, rgba(236,72,153,0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 400px 300px at 60% 80%, rgba(249,115,22,0.05) 0%, transparent 70%);
+}
+.hero-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: white; border: 1px solid var(--border); border-radius: 100px;
+  padding: 7px 18px; font-size: 13px; font-weight: 600; color: var(--text2);
+  margin-bottom: 32px; box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+.live-dot { width: 7px; height: 7px; background: #10b981; border-radius: 50%; animation: blink 2s infinite; }
+@keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+.hero h1 {
+  font-size: clamp(44px, 7vw, 84px); font-weight: 800; line-height: 1.05;
+  letter-spacing: -2px; max-width: 860px; margin-bottom: 24px;
+}
+.hero h1 .grad-text { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero-sub { font-size: 18px; color: var(--text2); max-width: 520px; line-height: 1.7; margin-bottom: 44px; }
+.hero-cta { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; margin-bottom: 64px; }
+.cta-main { padding: 18px 44px; background: var(--grad); color: white; border: none; border-radius: 14px; font-size: 17px; font-weight: 700; cursor: pointer; transition: all 0.3s; box-shadow: 0 6px 28px rgba(124,58,237,0.3); }
+.cta-main:hover { transform: translateY(-2px); box-shadow: 0 10px 40px rgba(124,58,237,0.4); }
+.cta-sec { padding: 18px 44px; background: white; color: var(--text); border: 1.5px solid var(--border); border-radius: 14px; font-size: 17px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+.cta-sec:hover { border-color: var(--purple); color: var(--purple); }
+.hero-stats { display: flex; gap: 48px; flex-wrap: wrap; justify-content: center; }
+.h-stat-num { font-size: 34px; font-weight: 800; letter-spacing: -1px; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.h-stat-label { font-size: 13px; color: var(--text3); margin-top: 2px; font-weight: 500; }
+
+/* HOW IT WORKS */
+.hiw { background: white; padding: 100px 48px; }
+.sec-tag { display: inline-block; padding: 5px 16px; background: var(--bg3); color: var(--purple); font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; border-radius: 100px; margin-bottom: 16px; }
+.sec-title { font-size: clamp(28px, 4vw, 46px); font-weight: 800; letter-spacing: -1px; margin-bottom: 14px; }
+.sec-sub { font-size: 16px; color: var(--text2); line-height: 1.7; max-width: 520px; }
+.hiw-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 28px; max-width: 1100px; margin: 64px auto 0; }
+.hiw-card { padding: 32px 28px; border-radius: 20px; background: var(--bg3); position: relative; }
+.hiw-num { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 800; color: white; margin-bottom: 20px; }
+.hiw-title { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+.hiw-desc { font-size: 14px; color: var(--text2); line-height: 1.6; }
+
+/* FEATURES */
+.features { padding: 100px 48px; background: var(--bg); }
+.feat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 20px; max-width: 1100px; margin: 64px auto 0; }
+.feat-card { background: white; border: 1px solid var(--border); border-radius: 20px; padding: 28px; transition: all 0.3s; }
+.feat-card:hover { transform: translateY(-4px); box-shadow: var(--shadow2); border-color: rgba(124,58,237,0.2); }
+.feat-icon { width: 52px; height: 52px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 18px; }
+.feat-title { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+.feat-desc { font-size: 14px; color: var(--text2); line-height: 1.65; }
+
+/* TOOL SECTION */
+.tool-sec { background: white; padding: 100px 24px; }
+.tool-box { max-width: 680px; margin: 0 auto; }
+.tool-inner { background: var(--bg); border: 1px solid var(--border); border-radius: 28px; padding: 40px; }
+.tlabel { font-size: 12px; font-weight: 700; color: var(--text2); text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-bottom: 10px; }
+.tags-wrap { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+.tag { padding: 8px 18px; background: white; border: 1.5px solid var(--border); border-radius: 100px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; user-select: none; }
+.tag:hover { border-color: var(--purple); color: var(--purple); }
+.tag.on { background: var(--purple); color: white; border-color: var(--purple); }
+.tselect { width: 100%; padding: 13px 16px; border: 1.5px solid var(--border); border-radius: 12px; font-size: 14px; font-weight: 500; background: white; font-family: 'Plus Jakarta Sans', sans-serif; outline: none; margin-bottom: 20px; cursor: pointer; color: var(--text); transition: border-color 0.2s; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b6880' d='M6 8L1 3h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; }
+.tselect:focus { border-color: var(--purple); }
+.go-btn { width: 100%; padding: 18px; background: var(--grad); color: white; border: none; border-radius: 14px; font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 20px rgba(124,58,237,0.25); }
+.go-btn:hover { transform: translateY(-1px); box-shadow: 0 8px 30px rgba(124,58,237,0.35); }
+.go-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
+
+/* LOADING */
+.load-box { text-align: center; padding: 48px 20px; }
+.spinner { width: 44px; height: 44px; border: 3px solid var(--border); border-top-color: var(--purple); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 16px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.load-text { font-size: 14px; color: var(--text2); font-weight: 500; }
+
+/* RESULTS */
+.result-card { background: white; border: 1.5px solid var(--border); border-radius: 18px; padding: 22px; margin-bottom: 14px; transition: all 0.2s; }
+.result-card:hover { border-color: var(--purple); box-shadow: var(--shadow); }
+.rc-top { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 12px; }
+.rc-emoji { font-size: 32px; flex-shrink: 0; }
+.rc-info { flex: 1; }
+.rc-name { font-size: 17px; font-weight: 700; margin-bottom: 3px; }
+.rc-meta { font-size: 12px; color: var(--text3); font-weight: 500; }
+.rc-earn { font-size: 16px; font-weight: 800; color: var(--green); white-space: nowrap; }
+.rc-why { font-size: 13px; color: var(--text2); line-height: 1.6; margin-bottom: 12px; }
+.rc-step { background: var(--bg3); border-radius: 10px; padding: 10px 14px; font-size: 13px; color: var(--purple); font-weight: 600; }
+
+/* TESTIMONIALS */
+.testi-sec { background: var(--bg3); padding: 100px 48px; }
+.testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1100px; margin: 64px auto 0; }
+.testi-card { background: white; border-radius: 20px; padding: 28px; border: 1px solid var(--border); }
+.stars { color: var(--yellow); font-size: 15px; margin-bottom: 14px; letter-spacing: 2px; }
+.testi-quote { font-size: 15px; line-height: 1.7; color: var(--text2); margin-bottom: 20px; font-style: italic; }
+.testi-ava { display: flex; align-items: center; gap: 12px; }
+.ava { width: 46px; height: 46px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 800; color: white; }
+.ava-name { font-size: 14px; font-weight: 700; }
+.ava-role { font-size: 12px; color: var(--text3); margin-top: 2px; }
+
+/* PRICING */
+.pricing-sec { background: white; padding: 100px 48px; }
+.pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; max-width: 860px; margin: 64px auto 0; }
+.price-card { background: var(--bg); border: 1.5px solid var(--border); border-radius: 24px; padding: 36px; position: relative; }
+.price-card.hot { background: white; border-color: var(--purple); box-shadow: 0 0 0 4px rgba(124,58,237,0.08); }
+.hot-badge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--grad); color: white; font-size: 12px; font-weight: 700; padding: 5px 20px; border-radius: 100px; white-space: nowrap; }
+.plan-label { font-size: 13px; font-weight: 700; color: var(--text2); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+.plan-price { font-size: 52px; font-weight: 800; letter-spacing: -2px; margin-bottom: 4px; }
+.plan-price sub { font-size: 16px; font-weight: 500; color: var(--text3); letter-spacing: 0; }
+.plan-tagline { font-size: 14px; color: var(--text2); margin-bottom: 28px; }
+.plan-list { list-style: none; margin-bottom: 28px; }
+.plan-list li { font-size: 14px; padding: 7px 0; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--border); }
+.plan-list li:last-child { border: none; }
+.plan-list .chk { color: var(--green); font-weight: 700; font-size: 16px; }
+.plan-list .xmark { color: var(--text3); font-weight: 700; font-size: 16px; }
+.plan-list .no { color: var(--text3); }
+.plan-cta { width: 100%; padding: 14px; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+.plan-cta-free { background: white; border: 1.5px solid var(--border); color: var(--text); }
+.plan-cta-free:hover { border-color: var(--purple); color: var(--purple); }
+.plan-cta-paid { background: var(--grad); color: white; border: none; box-shadow: 0 4px 20px rgba(124,58,237,0.25); }
+.plan-cta-paid:hover { transform: translateY(-1px); }
+
+/* FAQ */
+.faq-sec { background: var(--bg3); padding: 100px 48px; }
+.faq-wrap { max-width: 700px; margin: 64px auto 0; }
+.faq-item { background: white; border: 1px solid var(--border); border-radius: 16px; margin-bottom: 10px; overflow: hidden; }
+.faq-q { padding: 20px 24px; font-size: 15px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: color 0.2s; }
+.faq-q:hover { color: var(--purple); }
+.faq-ico { font-size: 22px; color: var(--text3); transition: transform 0.3s; }
+.faq-a { padding: 0 24px 20px; font-size: 14px; color: var(--text2); line-height: 1.75; display: none; }
+.faq-item.open .faq-ico { transform: rotate(45deg); color: var(--purple); }
+.faq-item.open .faq-a { display: block; }
+
+/* CTA SECTION */
+.cta-sec { background: var(--grad); padding: 100px 48px; text-align: center; }
+.cta-sec h2 { font-size: clamp(30px, 5vw, 52px); font-weight: 800; color: white; letter-spacing: -1px; margin-bottom: 16px; }
+.cta-sec p { font-size: 18px; color: rgba(255,255,255,0.8); margin-bottom: 40px; max-width: 500px; margin-left: auto; margin-right: auto; }
+.cta-white { padding: 18px 48px; background: white; color: var(--purple); border: none; border-radius: 14px; font-size: 17px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+.cta-white:hover { transform: translateY(-2px); box-shadow: 0 10px 40px rgba(0,0,0,0.2); }
+
+/* ABOUT */
+.about-hero { padding: 140px 48px 80px; text-align: center; background: white; }
+.about-body { max-width: 780px; margin: 0 auto; padding: 60px 48px; }
+.about-body h2 { font-size: 26px; font-weight: 800; margin: 36px 0 14px; letter-spacing: -0.5px; }
+.about-body p { font-size: 16px; color: var(--text2); line-height: 1.8; margin-bottom: 16px; }
+
+/* CONTACT */
+.contact-body { max-width: 1000px; margin: 0 auto; padding: 120px 48px 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+.contact-left h2 { font-size: 36px; font-weight: 800; letter-spacing: -1px; margin-bottom: 14px; }
+.contact-left p { font-size: 15px; color: var(--text2); line-height: 1.7; margin-bottom: 32px; }
+.ci { display: flex; align-items: center; gap: 14px; padding: 16px; background: white; border: 1px solid var(--border); border-radius: 14px; margin-bottom: 12px; }
+.ci-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+.ci-label { font-size: 11px; color: var(--text3); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+.ci-val { font-size: 14px; font-weight: 600; }
+.cf { background: white; border: 1px solid var(--border); border-radius: 20px; padding: 32px; }
+.cf h3 { font-size: 22px; font-weight: 800; margin-bottom: 24px; }
+.finput { width: 100%; padding: 13px 16px; border: 1.5px solid var(--border); border-radius: 12px; font-size: 14px; font-family: 'Plus Jakarta Sans', sans-serif; outline: none; margin-bottom: 12px; transition: border-color 0.2s; background: var(--bg); color: var(--text); }
+.finput:focus { border-color: var(--purple); background: white; }
+textarea.finput { height: 120px; resize: vertical; }
+.fsub { width: 100%; padding: 14px; background: var(--grad); color: white; border: none; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; }
+
+/* LEGAL */
+.legal { max-width: 780px; margin: 0 auto; padding: 120px 48px 80px; }
+.legal h1 { font-size: 40px; font-weight: 800; letter-spacing: -1px; margin-bottom: 6px; }
+.legal .updated { font-size: 13px; color: var(--text3); margin-bottom: 48px; }
+.legal h2 { font-size: 20px; font-weight: 700; margin: 36px 0 12px; }
+.legal p { font-size: 15px; color: var(--text2); line-height: 1.8; margin-bottom: 14px; }
+.legal ul { padding-left: 20px; margin-bottom: 16px; }
+.legal ul li { font-size: 15px; color: var(--text2); line-height: 1.8; margin-bottom: 6px; }
+
+/* MODAL */
+.moverlay { position: fixed; inset: 0; background: rgba(0,0,0,0.45); backdrop-filter: blur(4px); z-index: 2000; display: none; align-items: center; justify-content: center; padding: 20px; }
+.moverlay.show { display: flex; }
+.mbox { background: white; border-radius: 24px; padding: 40px; width: 100%; max-width: 420px; position: relative; animation: popIn 0.3s ease; }
+@keyframes popIn { from { opacity:0; transform: scale(0.95) translateY(10px); } to { opacity:1; transform: scale(1) translateY(0); } }
+.mclose { position: absolute; top: 16px; right: 16px; background: var(--bg3); border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 16px; cursor: pointer; color: var(--text2); display: flex; align-items: center; justify-content: center; }
+.mtabs { display: flex; gap: 4px; background: var(--bg3); border-radius: 12px; padding: 4px; margin-bottom: 28px; }
+.mtab { flex: 1; padding: 9px; font-size: 14px; font-weight: 600; border: none; border-radius: 9px; cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; background: transparent; color: var(--text2); transition: all 0.2s; }
+.mtab.on { background: white; color: var(--purple); box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+.mbox h2 { font-size: 26px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 6px; }
+.mbox p { font-size: 14px; color: var(--text2); margin-bottom: 20px; }
+.trial-pill { background: rgba(5,150,105,0.1); color: var(--green); border-radius: 10px; padding: 10px 16px; font-size: 13px; font-weight: 600; text-align: center; margin-bottom: 18px; }
+.mbtn { width: 100%; padding: 14px; background: var(--grad); color: white; border: none; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; margin-top: 14px; box-shadow: 0 4px 16px rgba(124,58,237,0.25); }
+
+/* AD PLACEHOLDER */
+.ad-slot { background: white; border: 1px dashed var(--border); border-radius: 12px; padding: 16px; text-align: center; font-size: 12px; color: var(--text3); font-weight: 500; min-height: 90px; display: flex; align-items: center; justify-content: center; margin: 24px 0; }
+
+/* FOOTER */
+footer { background: #0f0d1a; color: #7a7890; padding: 64px 48px 32px; }
+.foot-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; max-width: 1200px; margin: 0 auto 48px; }
+.foot-logo { font-size: 22px; font-weight: 800; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: block; margin-bottom: 12px; }
+.foot-desc { font-size: 14px; line-height: 1.7; }
+.foot-col h4 { font-size: 12px; font-weight: 700; color: #d4d0e8; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 18px; }
+.foot-col ul { list-style: none; }
+.foot-col li { margin-bottom: 10px; }
+.foot-col a { font-size: 14px; color: #7a7890; transition: color 0.2s; }
+.foot-col a:hover { color: white; }
+.foot-bottom { border-top: 1px solid #27243a; padding-top: 24px; text-align: center; font-size: 13px; max-width: 1200px; margin: 0 auto; }
+
+/* TOAST */
+.toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(120px); background: #0f0d1a; color: white; padding: 14px 28px; border-radius: 100px; font-size: 14px; font-weight: 600; z-index: 3000; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap; }
+.toast.up { transform: translateX(-50%) translateY(0); }
+
+@media (max-width: 900px) {
+  nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  section, .hiw, .features, .testi-sec, .pricing-sec, .faq-sec, .cta-sec { padding-left: 20px; padding-right: 20px; }
+  .contact-body { grid-template-columns: 1fr; padding: 100px 20px 60px; }
+  .foot-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .legal, .about-body { padding-left: 20px; padding-right: 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="logo" onclick="go('home')">HustleFinder.ai</div>
+  <ul class="nav-links">
+    <li><a onclick="go('home')">Home</a></li>
+    <li><a onclick="go('tool')">Try Free</a></li>
+    <li><a onclick="go('pricing')">Pricing</a></li>
+    <li><a onclick="go('about')">About</a></li>
+    <li><a onclick="go('contact')">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="btn-ghost" onclick="openM('login')">Log In</button>
+    <button class="btn-solid" onclick="openM('signup')">Start Free →</button>
+  </div>
+</nav>
+
+<!-- ===== HOME ===== -->
+<div id="p-home" class="page active">
+  <div class="hero">
+    <div class="hero-pill"><span class="live-dot"></span> AI-Powered • 50,000+ Matched</div>
+    <h1>Find Your Perfect<br><span class="grad-text">Side Hustle</span><br>in 60 Seconds</h1>
+    <p class="hero-sub">Answer a few questions. Our AI finds the best side hustles tailored to your skills, time, and goals.</p>
+    <div class="hero-cta">
+      <button class="cta-main" onclick="go('tool')">Get My Free Matches ✨</button>
+      <button class="cta-sec" onclick="go('pricing')">See Pricing</button>
+    </div>
+    <div class="hero-stats">
+      <div><div class="h-stat-num">50K+</div><div class="h-stat-label">Users Matched</div></div>
+      <div><div class="h-stat-num">200+</div><div class="h-stat-label">Side Hustles</div></div>
+      <div><div class="h-stat-num">$2.4M</div><div class="h-stat-label">Extra Earned</div></div>
+      <div><div class="h-stat-num">4.9★</div><div class="h-stat-label">User Rating</div></div>
+    </div>
+  </div>
+
+  <!-- AD SLOT -->
+  <div style="padding: 0 48px;"><div class="ad-slot">📢 Google AdSense Banner (728×90) — Add your publisher ID to activate</div></div>
+
+  <!-- HOW IT WORKS -->
+  <div class="hiw">
+    <div style="text-align:center"><div class="sec-tag">How It Works</div><h2 class="sec-title">Start Earning in 4 Steps</h2><p class="sec-sub" style="margin:0 auto">No experience needed. Just answer a few questions and let AI do the work.</p></div>
+    <div class="hiw-grid">
+      <div class="hiw-card"><div class="hiw-num" style="background:var(--grad)">1</div><div class="hiw-title">Tell Us About You</div><div class="hiw-desc">Share your skills, available time, and starting budget. Takes 2 minutes.</div></div>
+      <div class="hiw-card"><div class="hiw-num" style="background:var(--grad2)">2</div><div class="hiw-title">AI Analyzes</div><div class="hiw-desc">Our AI scans 200+ side hustles to find the best matches for your unique profile.</div></div>
+      <div class="hiw-card"><div class="hiw-num" style="background:var(--grad3)">3</div><div class="hiw-title">Get 5 Matches</div><div class="hiw-desc">Receive personalized recommendations with real earning potential data.</div></div>
+      <div class="hiw-card"><div class="hiw-num" style="background:linear-gradient(135deg,#10b981,#3b82f6)">4</div><div class="hiw-title">Start Today</div><div class="hiw-desc">Each match includes an exact first step so you can begin immediately.</div></div>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <div class="features">
+    <div style="text-align:center"><div class="sec-tag">Features</div><h2 class="sec-title">Everything You Need</h2></div>
+    <div class="feat-grid">
+      <div class="feat-card"><div class="feat-icon" style="background:rgba(124,58,237,0.1)">🎯</div><div class="feat-title">AI-Powered Matching</div><div class="feat-desc">Advanced AI analyzes 200+ side hustles to find your perfect match.</div></div>
+      <div class="feat-card"><div class="feat-icon" style="background:rgba(5,150,105,0.1)">💰</div><div class="feat-title">Real Earning Estimates</div><div class="feat-desc">Realistic monthly earning potential based on real side hustler data.</div></div>
+      <div class="feat-card"><div class="feat-icon" style="background:rgba(249,115,22,0.1)">🚀</div><div class="feat-title">Actionable First Steps</div><div class="feat-desc">Every match includes an exact action you can take today to get started.</div></div>
+      <div class="feat-card"><div class="feat-icon" style="background:rgba(59,130,246,0.1)">🌍</div><div class="feat-title">Pakistan + Global</div><div class="feat-desc">Local PKR opportunities and international USD-earning side hustles.</div></div>
+      <div class="feat-card"><div class="feat-icon" style="background:rgba(236,72,153,0.1)">📊</div><div class="feat-title">Save Your Matches</div><div class="feat-desc">Track your side hustle journey and save your favorite matches.</div></div>
+      <div class="feat-card"><div class="feat-icon" style="background:rgba(245,158,11,0.1)">🔄</div><div class="feat-title">Unlimited Searches</div><div class="feat-desc">Pro plan gives unlimited searches as your goals evolve.</div></div>
+    </div>
+  </div>
+
+  <!-- TESTIMONIALS -->
+  <div class="testi-sec">
+    <div style="text-align:center"><div class="sec-tag">Testimonials</div><h2 class="sec-title">Real People, Real Results</h2></div>
+    <div class="testi-grid">
+      <div class="testi-card"><div class="stars">★★★★★</div><p class="testi-quote">"HustleFinder matched me with freelance content writing. I made $800 in my first month — life changing!"</p><div class="testi-ava"><div class="ava" style="background:var(--grad)">SA</div><div><div class="ava-name">Sarah Ahmed</div><div class="ava-role">Content Writer, Karachi</div></div></div></div>
+      <div class="testi-card"><div class="stars">★★★★★</div><p class="testi-quote">"The AI suggested Fiverr logo design. Now I earn $1,200/month on the side while keeping my day job!"</p><div class="testi-ava"><div class="ava" style="background:var(--grad2)">MK</div><div><div class="ava-name">Muhammad Khan</div><div class="ava-role">Designer, Lahore</div></div></div></div>
+      <div class="testi-card"><div class="stars">★★★★★</div><p class="testi-quote">"As a student with 2 hours daily, I found the perfect micro-task side hustle. Making $300/month easily!"</p><div class="testi-ava"><div class="ava" style="background:var(--grad3)">FS</div><div><div class="ava-name">Fatima Siddiqui</div><div class="ava-role">Student, Islamabad</div></div></div></div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-sec">
+    <h2>Ready to Find Your Side Hustle?</h2>
+    <p>Join 50,000+ people who found their perfect opportunity with AI.</p>
+    <button class="cta-white" onclick="openM('signup')">Start Your Free 7-Day Trial →</button>
+  </div>
+</div>
+
+<!-- ===== TOOL ===== -->
+<div id="p-tool" class="page">
+  <div class="tool-sec" style="padding-top:110px">
+    <div style="text-align:center; margin-bottom:48px">
+      <div class="sec-tag">AI Matcher</div>
+      <h2 class="sec-title">Find Your Perfect Side Hustle</h2>
+      <p style="font-size:16px; color:var(--text2); max-width:480px; margin:0 auto">Tell us about yourself and AI will match you with the best opportunities.</p>
+    </div>
+
+    <div style="max-width:680px; margin:0 auto 32px;"><div class="ad-slot">📢 Google AdSense (728×90)</div></div>
+
+    <div class="tool-box">
+      <div class="tool-inner">
+        <!-- STEP 1 -->
+        <div id="t-form">
+          <label class="tlabel">Your Skills (select up to 3)</label>
+          <div class="tags-wrap">
+            <span class="tag" onclick="tog(this)" data-v="Writing & Content">✍️ Writing</span>
+            <span class="tag" onclick="tog(this)" data-v="Design & Graphics">🎨 Design</span>
+            <span class="tag" onclick="tog(this)" data-v="Coding & Tech">💻 Coding</span>
+            <span class="tag" onclick="tog(this)" data-v="Video & Editing">🎬 Video</span>
+            <span class="tag" onclick="tog(this)" data-v="Sales & Marketing">📣 Marketing</span>
+            <span class="tag" onclick="tog(this)" data-v="Teaching & Coaching">📚 Teaching</span>
+            <span class="tag" onclick="tog(this)" data-v="Social Media">📱 Social Media</span>
+            <span class="tag" onclick="tog(this)" data-v="AI Tools">🤖 AI Tools</span>
+            <span class="tag" onclick="tog(this)" data-v="Photography">📸 Photography</span>
+            <span class="tag" onclick="tog(this)" data-v="Handicrafts">🧶 Handicrafts</span>
+          </div>
+
+          <label class="tlabel">Daily Time Available</label>
+          <select class="tselect" id="t1">
+            <option>1-2 hours/day</option>
+            <option>2-4 hours/day</option>
+            <option>4-6 hours/day</option>
+            <option>Full time (8+ hours)</option>
+          </select>
+
+          <label class="tlabel">Starting Budget</label>
+          <select class="tselect" id="t2">
+            <option>$0 — No investment needed</option>
+            <option>$10 - $50</option>
+            <option>$50 - $200</option>
+            <option>$200+</option>
+          </select>
+
+          <label class="tlabel">Your Main Goal</label>
+          <select class="tselect" id="t3">
+            <option>Extra income ($200-500/month)</option>
+            <option>Replace my job ($1000+/month)</option>
+            <option>Build a full business</option>
+            <option>Passive income stream</option>
+          </select>
+
+          <label class="tlabel">Where to Work?</label>
+          <select class="tselect" id="t4">
+            <option>Pakistan — Local clients</option>
+            <option>International — USD earning</option>
+            <option>Both Pakistan & International</option>
+          </select>
+
+          <button class="go-btn" id="goBtn" onclick="doMatch()">✨ Find My Side Hustles</button>
+        </div>
+
+        <!-- LOADING -->
+        <div id="t-load" style="display:none">
+          <div class="load-box">
+            <div class="spinner"></div>
+            <p class="load-text" id="lmsg">AI is analyzing your profile...</p>
+          </div>
+        </div>
+
+        <!-- RESULTS -->
+        <div id="t-res" style="display:none">
+          <p style="font-size:13px; color:var(--text2); margin-bottom:20px; text-align:center; font-weight:500">🎯 Your 5 personalized side hustle matches</p>
+          <div id="res-cards"></div>
+          <button onclick="resetMatch()" style="width:100%; margin-top:16px; padding:13px; border:1.5px solid var(--border); border-radius:12px; background:white; font-size:14px; font-weight:600; cursor:pointer; font-family:'Plus Jakarta Sans',sans-serif; color:var(--text2); transition:all 0.2s;" onmouseover="this.style.borderColor='var(--purple)';this.style.color='var(--purple)';" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text2)';">🔄 Try Again with Different Skills</button>
+        </div>
+      </div>
+    </div>
+
+    <div style="max-width:680px; margin:32px auto 0;"><div class="ad-slot">📢 Google AdSense (728×90)</div></div>
+  </div>
+</div>
+
+<!-- ===== PRICING ===== -->
+<div id="p-pricing" class="page">
+  <div class="pricing-sec" style="padding-top:110px">
+    <div style="text-align:center">
+      <div class="sec-tag">Pricing</div>
+      <h2 class="sec-title">Simple, Honest Pricing</h2>
+      <p style="font-size:16px; color:var(--text2)">Start free for 7 days. No credit card required.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="plan-label">Free Trial</div>
+        <div class="plan-price">$0 <sub>/7 days</sub></div>
+        <div class="plan-tagline">Explore the tool risk-free</div>
+        <ul class="plan-list">
+          <li><span class="chk">✓</span> 3 AI matches per day</li>
+          <li><span class="chk">✓</span> Basic side hustle info</li>
+          <li><span class="chk">✓</span> First step guide</li>
+          <li><span class="xmark">✗</span> <span class="no">Save matches</span></li>
+          <li><span class="xmark">✗</span> <span class="no">Detailed earning data</span></li>
+          <li><span class="xmark">✗</span> <span class="no">Priority support</span></li>
+        </ul>
+        <button class="plan-cta plan-cta-free" onclick="openM('signup')">Start Free Trial</button>
+      </div>
+      <div class="price-card hot">
+        <div class="hot-badge">🔥 Most Popular</div>
+        <div class="plan-label">Pro</div>
+        <div class="plan-price">$9 <sub>/month</sub></div>
+        <div class="plan-tagline">Everything you need to succeed</div>
+        <ul class="plan-list">
+          <li><span class="chk">✓</span> Unlimited AI matches</li>
+          <li><span class="chk">✓</span> Detailed side hustle guides</li>
+          <li><span class="chk">✓</span> Real earning data</li>
+          <li><span class="chk">✓</span> Save & track matches</li>
+          <li><span class="chk">✓</span> Monthly hustle trends</li>
+          <li><span class="chk">✓</span> Priority email support</li>
+        </ul>
+        <button class="plan-cta plan-cta-paid" onclick="openM('signup')">Start Free Trial →</button>
+      </div>
+    </div>
+    <p style="text-align:center; margin-top:20px; font-size:13px; color:var(--text3)">✓ No credit card &nbsp;•&nbsp; ✓ Cancel anytime &nbsp;•&nbsp; ✓ 7-day free trial</p>
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq-sec">
+    <div style="text-align:center"><div class="sec-tag">FAQ</div><h2 class="sec-title">Common Questions</h2></div>
+    <div class="faq-wrap">
+      <div class="faq-item"><div class="faq-q" onclick="tfaq(this)">Do I need a credit card for the free trial? <span class="faq-ico">+</span></div><div class="faq-a">No! Start your 7-day free trial without any credit card. Only add payment when you decide to go Pro.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="tfaq(this)">Can I cancel anytime? <span class="faq-ico">+</span></div><div class="faq-a">Yes, cancel anytime with one click. No questions asked, no hidden fees.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="tfaq(this)">How accurate are the earning estimates? <span class="faq-ico">+</span></div><div class="faq-a">Our estimates are based on real data from thousands of side hustlers. Actual earnings depend on your effort and consistency.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="tfaq(this)">Does it work in Pakistan? <span class="faq-ico">+</span></div><div class="faq-a">Yes! We specifically include Pakistani local opportunities and international USD-earning side hustles.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="tfaq(this)">How many side hustles are in the database? <span class="faq-ico">+</span></div><div class="faq-a">Our AI covers 200+ side hustles including freelancing, digital products, content creation, local services, and more.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="tfaq(this)">Is my data private? <span class="faq-ico">+</span></div><div class="faq-a">Absolutely. We never sell your data. See our Privacy Policy for full details.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ABOUT ===== -->
+<div id="p-about" class="page">
+  <div class="about-hero">
+    <div class="sec-tag">About Us</div>
+    <h1 style="font-size:clamp(36px,5vw,60px); font-weight:800; letter-spacing:-2px; margin:16px 0;">We Help People Earn More</h1>
+    <p style="font-size:18px; color:var(--text2); max-width:500px; margin:0 auto; line-height:1.7;">HustleFinder.ai was built to help anyone find the perfect side hustle using AI — personalized to their skills and goals.</p>
+  </div>
+  <div class="about-body">
+    <h2>Our Mission</h2>
+    <p>We believe everyone deserves financial freedom. Whether you want to pay off debt, save for a dream, or simply earn more — there is a perfect side hustle for you. Our AI makes finding it fast, personalized, and actionable.</p>
+    <h2>Our Story</h2>
+    <p>HustleFinder.ai was born from a simple frustration: there were thousands of "side hustle ideas" online but none were personalized. Generic lists don't account for your skills, time, or location.</p>
+    <p>So we built an AI that does. Today we've helped over 50,000 people discover side hustles that match their real life — from freelancers in Karachi earning USD to students in Lahore making their first online income.</p>
+    <h2>Our Values</h2>
+    <p><strong>Honesty:</strong> Realistic earning estimates — no fake promises or get-rich-quick claims.</p>
+    <p><strong>Accessibility:</strong> Anyone anywhere can use HustleFinder.ai — no experience required.</p>
+    <p><strong>Action:</strong> We give you the exact first step to start today — not just inspiration.</p>
+  </div>
+</div>
+
+<!-- ===== CONTACT ===== -->
+<div id="p-contact" class="page">
+  <div class="contact-body">
+    <div class="contact-left">
+      <div class="sec-tag">Contact</div>
+      <h2>Get In Touch</h2>
+      <p>Have a question or need help? We respond within 24 hours.</p>
+      <div class="ci"><div class="ci-icon" style="background:rgba(124,58,237,0.1)">📧</div><div><div class="ci-label">Email</div><div class="ci-val">support@hustlefinder.ai</div></div></div>
+      <div class="ci"><div class="ci-icon" style="background:rgba(5,150,105,0.1)">📱</div><div><div class="ci-label">WhatsApp</div><div class="ci-val">+92 302 6333527</div></div></div>
+      <div class="ci"><div class="ci-icon" style="background:rgba(249,115,22,0.1)">⏰</div><div><div class="ci-label">Response Time</div><div class="ci-val">Within 24 hours</div></div></div>
+    </div>
+    <div class="cf">
+      <h3>Send a Message</h3>
+      <input type="text" class="finput" placeholder="Your Name">
+      <input type="email" class="finput" placeholder="Email Address">
+      <input type="text" class="finput" placeholder="Subject">
+      <textarea class="finput" placeholder="Your message..."></textarea>
+      <button class="fsub" onclick="toast('Message sent! We will reply within 24 hours. ✅')">Send Message</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PRIVACY ===== -->
+<div id="p-privacy" class="page">
+  <div class="legal">
+    <h1>Privacy Policy</h1>
+    <p class="updated">Last updated: June 8, 2026</p>
+    <p>HustleFinder.ai is committed to protecting your privacy. This policy explains how we collect, use, and protect your information.</p>
+    <h2>1. Information We Collect</h2>
+    <ul><li>Name and email when you create an account</li><li>Skills and goals you enter in the matcher tool</li><li>Payment info (processed securely by Stripe)</li><li>Support messages</li></ul>
+    <h2>2. How We Use It</h2>
+    <p>To provide our service, process transactions, send support messages, and improve our AI matching accuracy.</p>
+    <h2>3. Data Sharing</h2>
+    <p>We never sell your data. We may share only to comply with laws or protect safety.</p>
+    <h2>4. Google AdSense</h2>
+    <p>We display ads via Google AdSense. Google may use cookies to personalize ads. You can opt out via Google Ads Settings.</p>
+    <h2>5. Cookies</h2>
+    <p>We use cookies to enhance experience and analyze traffic. You can control this in your browser settings.</p>
+    <h2>6. Contact</h2>
+    <p>Questions? Email: support@hustlefinder.ai</p>
+  </div>
+</div>
+
+<!-- ===== TERMS ===== -->
+<div id="p-terms" class="page">
+  <div class="legal">
+    <h1>Terms of Service</h1>
+    <p class="updated">Last updated: June 8, 2026</p>
+    <p>By using HustleFinder.ai you agree to these terms.</p>
+    <h2>1. Use of Service</h2>
+    <p>You may use our service for personal, non-commercial purposes. Do not misuse or use in any unlawful way.</p>
+    <h2>2. Accounts</h2>
+    <p>You are responsible for your account credentials and all activities under your account.</p>
+    <h2>3. Subscriptions</h2>
+    <p>Pro plan is $9/month. Cancel anytime. Refunds within 7 days of purchase if unsatisfied.</p>
+    <h2>4. Free Trial</h2>
+    <p>7-day free trial for new users. No credit card required. After trial, Pro subscription required.</p>
+    <h2>5. Disclaimer</h2>
+    <p>Earning estimates are for informational purposes only. We do not guarantee any specific income.</p>
+    <h2>6. Contact</h2>
+    <p>Questions? Email: support@hustlefinder.ai</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-grid">
+    <div><span class="foot-logo">HustleFinder.ai</span><p class="foot-desc">AI-powered side hustle matching. Find your perfect opportunity and start earning extra income today.</p></div>
+    <div class="foot-col"><h4>Product</h4><ul><li><a onclick="go('tool')">Try Matcher</a></li><li><a onclick="go('pricing')">Pricing</a></li><li><a onclick="go('pricing')">FAQ</a></li></ul></div>
+    <div class="foot-col"><h4>Company</h4><ul><li><a onclick="go('about')">About Us</a></li><li><a onclick="go('contact')">Contact</a></li></ul></div>
+    <div class="foot-col"><h4>Legal</h4><ul><li><a onclick="go('privacy')">Privacy Policy</a></li><li><a onclick="go('terms')">Terms of Service</a></li></ul></div>
+  </div>
+  <div class="foot-bottom">© 2026 HustleFinder.ai — All rights reserved.</div>
+</footer>
+
+<!-- AUTH MODAL -->
+<div class="moverlay" id="modal">
+  <div class="mbox">
+    <button class="mclose" onclick="closeM()">✕</button>
+    <div class="mtabs">
+      <button class="mtab on" id="mt-login" onclick="swTab('login')">Log In</button>
+      <button class="mtab" id="mt-signup" onclick="swTab('signup')">Sign Up</button>
+    </div>
+    <div id="mv-login">
+      <h2>Welcome back!</h2>
+      <p>Log in to access your saved matches.</p>
+      <input type="email" class="finput" placeholder="Email Address">
+      <input type="password" class="finput" placeholder="Password">
+      <button class="mbtn" onclick="closeM();toast('Welcome back! 👋')">Log In</button>
+    </div>
+    <div id="mv-signup" style="display:none">
+      <h2>Start Free Trial</h2>
+      <div class="trial-pill">✅ 7 days free — No credit card required</div>
+      <input type="text" class="finput" placeholder="Full Name">
+      <input type="email" class="finput" placeholder="Email Address">
+      <input type="password" class="finput" placeholder="Create Password">
+      <button class="mbtn" onclick="closeM();toast('Account created! Free trial started ✅')">Start Free Trial →</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toastEl"></div>
+
+<script>
+let skills = [];
+const lmsgs = ['AI is analyzing your profile...','Finding best matches...','Calculating earning potential...','Almost ready...'];
+
+function go(p) {
+  document.querySelectorAll('.page').forEach(el => el.classList.remove('active'));
+  document.getElementById('p-'+p).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function tog(el) {
+  const v = el.dataset.v;
+  if (skills.includes(v)) { skills = skills.filter(s=>s!==v); el.classList.remove('on'); }
+  else if (skills.length < 3) { skills.push(v); el.classList.add('on'); }
+}
+
+async function doMatch() {
+  if (!skills.length) { toast('Please select at least one skill!'); return; }
+  const t1=document.getElementById('t1').value, t2=document.getElementById('t2').value,
+        t3=document.getElementById('t3').value, t4=document.getElementById('t4').value;
+
+  document.getElementById('t-form').style.display='none';
+  document.getElementById('t-load').style.display='block';
+  document.getElementById('goBtn').disabled=true;
+
+  let i=0;
+  const iv=setInterval(()=>{ i=(i+1)%lmsgs.length; document.getElementById('lmsg').textContent=lmsgs[i]; },2000);
+
+  try {
+    const res = await fetch('/api/match', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({skills:skills.join(', '),time:t1,budget:t2,goal:t3,location:t4})
+    });
+    const data = await res.json();
+    clearInterval(iv);
+
+    document.getElementById('t-load').style.display='none';
+    document.getElementById('t-res').style.display='block';
+    document.getElementById('res-cards').innerHTML = data.hustles.map((h,i)=>`
+      <div class="result-card">
+        <div class="rc-top">
+          <span class="rc-emoji">${h.emoji}</span>
+          <div class="rc-info">
+            <div class="rc-name">${i+1}. ${h.name}</div>
+            <div class="rc-meta">${h.difficulty} difficulty • First earning: ${h.time_to_first}</div>
+          </div>
+          <span class="rc-earn">${h.monthly_earning}</span>
+        </div>
+        <p class="rc-why">${h.why_fit}</p>
+        <div class="rc-step">▶ Start today: ${h.first_step}</div>
+      </div>`).join('');
+  } catch(e) {
+    clearInterval(iv);
+    document.getElementById('t-load').style.display='none';
+    document.getElementById('t-form').style.display='block';
+    document.getElementById('goBtn').disabled=false;
+    toast('Something went wrong. Please try again!');
+  }
+}
+
+function resetMatch() {
+  skills=[];
+  document.querySelectorAll('.tag').forEach(t=>t.classList.remove('on'));
+  document.getElementById('t-res').style.display='none';
+  document.getElementById('t-form').style.display='block';
+  document.getElementById('goBtn').disabled=false;
+}
+
+function tfaq(el) { el.parentElement.classList.toggle('open'); }
+
+function openM(tab) { document.getElementById('modal').classList.add('show'); swTab(tab); }
+function closeM() { document.getElementById('modal').classList.remove('show'); }
+function swTab(t) {
+  document.getElementById('mt-login').classList.toggle('on', t==='login');
+  document.getElementById('mt-signup').classList.toggle('on', t==='signup');
+  document.getElementById('mv-login').style.display = t==='login'?'block':'none';
+  document.getElementById('mv-signup').style.display = t==='signup'?'block':'none';
+}
+document.getElementById('modal').addEventListener('click', e=>{ if(e.target===document.getElementById('modal')) closeM(); });
+
+function toast(msg) {
+  const el=document.getElementById('toastEl');
+  el.textContent=msg; el.classList.add('up');
+  setTimeout(()=>el.classList.remove('up'),3500);
+}
+</script>
+</body>
+</html>
