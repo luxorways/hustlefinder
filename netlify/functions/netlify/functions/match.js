@@ -33,18 +33,27 @@ Respond ONLY in this exact JSON format with no other text:
     });
 
     const data = await response.json();
+
+    if (!data.content || !data.content[0]) {
+      throw new Error('Invalid API response');
+    }
+
     let text = data.content[0].text.replace(/```json|```/g, '').trim();
     const parsed = JSON.parse(text);
 
     return {
       statusCode: 200,
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      },
       body: JSON.stringify(parsed)
     };
 
   } catch (err) {
     return {
       statusCode: 500,
+      headers: { 'Access-Control-Allow-Origin': '*' },
       body: JSON.stringify({ error: err.message })
     };
   }
